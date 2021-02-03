@@ -1,0 +1,11 @@
+# Ignore diretories
+
+node_modules/
+dist/
+test/
+
+# Ignore environment variable
+
+prod.env
+dev.env
+.env
