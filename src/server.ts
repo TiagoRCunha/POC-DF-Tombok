@@ -1,12 +1,10 @@
 import cors from "cors";
 import express from "express";
+import route from "./route";
 
 const server = express();
 
 server.use(cors());
-
-server.get("/", (request, response) => {
-  return response.send("Hello!");
-});
+server.use(route)
 
 export default server;
