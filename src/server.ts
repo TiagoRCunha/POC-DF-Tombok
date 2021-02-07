@@ -5,6 +5,6 @@ import route from "./routes";
 const server = express();
 
 server.use(cors());
-server.use(route)
+server.use(route);
 
 export default server;
