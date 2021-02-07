@@ -17,6 +17,8 @@
     ],
     "rules": {
         "quotes": [1,"double"],
-        "no-console": [2]
+        "no-console": [2],
+        "@typescript-eslint/no-empty-interface": 0,
+        "semi": "warn"
     }
 }
