@@ -1,5 +1,5 @@
 import { Association, DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from "../config/database";
+import { sequelize } from "../db";
 import { Character } from "./Character";
 import { Status } from "./Shared/Status";
 import { Tag } from "./Tag";
@@ -14,7 +14,7 @@ interface UserAttributes {
   status: Status;
 }
 
-interface UserModel extends Optional<UserAttributes, "id"> {}
+interface UserModel extends Optional<UserAttributes, "id"> { }
 
 export class User extends Model<UserAttributes, UserModel>
   implements UserAttributes {
@@ -35,8 +35,12 @@ export class User extends Model<UserAttributes, UserModel>
 
   public static associations: {
     tags: Association<User, Tag>;
-    characters: Association<User,Character>;
+    characters: Association<User, Character>;
   };
+
+  // public async checkPassword(password: string): Promise<boolean> {
+  //   return bcrypt.compare(password, this.passwordHash);
+  // }
 }
 
 User.init({
@@ -73,9 +77,18 @@ User.init({
     defaultValue: "ACTIVED"
   }
 },
-{
-  tableName: "user",
-  timestamps: true,
-  underscored: true,
-  sequelize
-});
+  {
+    tableName: "user",
+    timestamps: true,
+    underscored: true,
+    sequelize
+  });
+
+  // User.addHook(
+  //   'beforeSave',
+  //   async (user: User): Promise<void> => {
+  //     if (user.password) {
+  //       user.passwordHash = await bcrypt.hash(user.password, 8);
+  //     }
+  //   }
+  // );

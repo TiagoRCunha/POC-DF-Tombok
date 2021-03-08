@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from "../config/database";
+import { sequelize } from "../db";
 import { Status } from "./Shared/Status";
 
 interface GradeAttributes {
@@ -10,7 +10,7 @@ interface GradeAttributes {
   status: Status;
 }
 
-interface GradeModel extends Optional<GradeAttributes, "id"> {}
+interface GradeModel extends Optional<GradeAttributes, "id"> { }
 
 export class Grade extends Model<GradeAttributes, GradeModel>
   implements GradeAttributes {
@@ -49,9 +49,9 @@ Grade.init({
     defaultValue: "ACTIVED"
   }
 },
-{
-  tableName: "grade",
-  timestamps: true,
-  underscored: true,
-  sequelize
-});
+  {
+    tableName: "grade",
+    timestamps: true,
+    underscored: true,
+    sequelize
+  });

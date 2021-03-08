@@ -1,12 +1,12 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from "../config/database";
+import { sequelize } from "../db";
 
 interface CharacterSkillAttributes {
   character_id: number;
   skill_id: number;
 }
 
-interface CharacterSkillModel extends Optional<CharacterSkillAttributes, "character_id" & "skill_id"> {}
+interface CharacterSkillModel extends Optional<CharacterSkillAttributes, "character_id" & "skill_id"> { }
 
 export class CharacterSkill extends Model<CharacterSkillAttributes, CharacterSkillModel>
   implements CharacterSkillAttributes {
@@ -25,9 +25,9 @@ CharacterSkill.init({
     allowNull: false
   }
 },
-{
-  tableName: "character_skill",
-  timestamps: true,
-  underscored: true,
-  sequelize
-});
+  {
+    tableName: "character_skill",
+    timestamps: true,
+    underscored: true,
+    sequelize
+  });

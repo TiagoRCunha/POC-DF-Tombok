@@ -1,5 +1,5 @@
 import { Association, DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from "../config/database";
+import { sequelize } from "../db";
 import { EquipamentPreRequisite } from "./Equipament_pre_requisite";
 import { Status } from "./Shared/Status";
 
@@ -17,11 +17,11 @@ interface EquipamentAttributes {
   status: Status;
 }
 
-interface EquipamentModel extends Optional<EquipamentAttributes, "id"> {}
+interface EquipamentModel extends Optional<EquipamentAttributes, "id"> { }
 
 export class Equipament extends Model<EquipamentAttributes, EquipamentModel>
   implements EquipamentAttributes {
-  
+
   public id!: number;
   public name!: string;
   public description!: string;
@@ -92,9 +92,9 @@ Equipament.init({
     defaultValue: "ACTIVED"
   }
 },
-{
-  tableName: "skill_pre_requisite",
-  timestamps: true,
-  underscored: true,
-  sequelize
-});
+  {
+    tableName: "skill_pre_requisite",
+    timestamps: true,
+    underscored: true,
+    sequelize
+  });

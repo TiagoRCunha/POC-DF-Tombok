@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from "../config/database";
+import { sequelize } from "../db";
 
 interface StatsAttributes {
   id: number;
@@ -9,7 +9,7 @@ interface StatsAttributes {
   amount: number;
 }
 
-interface StatsModel extends Optional<StatsAttributes, "id"> {}
+interface StatsModel extends Optional<StatsAttributes, "id"> { }
 
 export class Stats extends Model<StatsAttributes, StatsModel>
   implements StatsAttributes {
@@ -48,9 +48,9 @@ Stats.init({
     defaultValue: 1
   }
 },
-{
-  tableName: "stats",
-  timestamps: true,
-  underscored: true,
-  sequelize
-});
+  {
+    tableName: "stats",
+    timestamps: true,
+    underscored: true,
+    sequelize
+  });

@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from "../config/database";
+import { sequelize } from "../db";
 import { Status } from "./Shared/Status";
 
 interface AdminAttributes {
@@ -11,11 +11,11 @@ interface AdminAttributes {
   contact_number: string;
 }
 
-interface AdminModel extends Optional<AdminAttributes, "id"> {}
+interface AdminModel extends Optional<AdminAttributes, "id"> { }
 
 export class Admin extends Model<AdminAttributes, AdminModel>
   implements AdminAttributes {
-  
+
   public id!: number;
   public username!: string;
   public email!: string;
@@ -55,9 +55,9 @@ Admin.init({
     defaultValue: "ACTIVED"
   }
 },
-{
-  tableName: "admin",
-  timestamps: true,
-  underscored: true,
-  sequelize
-});
+  {
+    tableName: "admin",
+    timestamps: true,
+    underscored: true,
+    sequelize
+  });

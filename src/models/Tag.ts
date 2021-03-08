@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from "../config/database";
+import { sequelize } from "../db";
 import { Status } from "./Shared/Status";
 
 interface TagAttributes {
@@ -10,7 +10,7 @@ interface TagAttributes {
   status: Status;
 }
 
-interface TagModel extends Optional<TagAttributes, "id"> {}
+interface TagModel extends Optional<TagAttributes, "id"> { }
 
 export class Tag extends Model<TagAttributes, TagModel>
   implements TagAttributes {
@@ -24,7 +24,7 @@ export class Tag extends Model<TagAttributes, TagModel>
   public readonly updatedAt!: Date;
 
   // public static associations: {
-  //   projects: Association<User, Project>;
+  //   projects: Association<Tag, User>;
   // };
 }
 
@@ -52,9 +52,9 @@ Tag.init({
     defaultValue: "ACTIVED"
   }
 },
-{
-  tableName: "tag",
-  timestamps: true,
-  underscored: true,
-  sequelize
-});
+  {
+    tableName: "tag",
+    timestamps: true,
+    underscored: true,
+    sequelize
+  });

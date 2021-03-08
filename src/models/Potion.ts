@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from "../config/database";
+import { sequelize } from "../db";
 import { Status } from "./Shared/Status";
 
 interface PotionAttributes {
@@ -13,7 +13,7 @@ interface PotionAttributes {
   status: Status;
 }
 
-interface PotionModel extends Optional<PotionAttributes, "id"> {}
+interface PotionModel extends Optional<PotionAttributes, "id"> { }
 
 export class Potion extends Model<PotionAttributes, PotionModel>
   implements PotionAttributes {
@@ -70,9 +70,9 @@ Potion.init({
     defaultValue: "ACTIVED"
   }
 },
-{
-  tableName: "potion",
-  timestamps: true,
-  underscored: true,
-  sequelize
-});
+  {
+    tableName: "potion",
+    timestamps: true,
+    underscored: true,
+    sequelize
+  });

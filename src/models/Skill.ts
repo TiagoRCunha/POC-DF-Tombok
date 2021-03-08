@@ -1,5 +1,5 @@
 import { Association, DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from "../config/database";
+import { sequelize } from "../db";
 import { Character } from "./Character";
 import { Status } from "./Shared/Status";
 import { SkillPreRequisite } from "./Skill_pre_requisite";
@@ -15,7 +15,7 @@ interface SkillAttributes {
   status: Status;
 }
 
-interface SkillModel extends Optional<SkillAttributes, "id"> {}
+interface SkillModel extends Optional<SkillAttributes, "id"> { }
 
 export class Skill extends Model<SkillAttributes, SkillModel>
   implements SkillAttributes {
@@ -28,7 +28,7 @@ export class Skill extends Model<SkillAttributes, SkillModel>
   public attack!: number;
   public power!: number;
   public stamina!: number;
- 
+
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
@@ -77,9 +77,9 @@ Skill.init({
     defaultValue: "ACTIVED"
   }
 },
-{
-  tableName: "skill",
-  timestamps: true,
-  underscored: true,
-  sequelize
-});
+  {
+    tableName: "skill",
+    timestamps: true,
+    underscored: true,
+    sequelize
+  });

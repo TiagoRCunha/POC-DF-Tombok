@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from "../config/database";
+import { sequelize } from "../db";
 import { Status } from "./Shared/Status";
 
 interface SkillPreRequisiteAttributes {
@@ -11,11 +11,11 @@ interface SkillPreRequisiteAttributes {
   status: Status;
 }
 
-interface SkillPreRequisiteModel extends Optional<SkillPreRequisiteAttributes, "id"> {}
+interface SkillPreRequisiteModel extends Optional<SkillPreRequisiteAttributes, "id"> { }
 
 export class SkillPreRequisite extends Model<SkillPreRequisiteAttributes, SkillPreRequisiteModel>
   implements SkillPreRequisiteAttributes {
-  
+
   public id!: number;
   public member_only!: boolean;
   public experience_required!: number;
@@ -56,9 +56,9 @@ SkillPreRequisite.init({
     defaultValue: "ACTIVED"
   }
 },
-{
-  tableName: "skill_pre_requisite",
-  timestamps: true,
-  underscored: true,
-  sequelize
-});
+  {
+    tableName: "skill_pre_requisite",
+    timestamps: true,
+    underscored: true,
+    sequelize
+  });

@@ -1,5 +1,5 @@
 import { Association, DataTypes, Model, Optional } from "sequelize";
-import { sequelize } from "../config/database";
+import { sequelize } from "../db";
 import { Equipament } from "./Equipament";
 import { Grade } from "./Grade";
 import { Potion } from "./Potion";
@@ -21,7 +21,7 @@ interface CharacterAttributes {
   life_points: number;
 }
 
-interface CharacterModel extends Optional<CharacterAttributes, "id"> {}
+interface CharacterModel extends Optional<CharacterAttributes, "id"> { }
 
 export class Character extends Model<CharacterAttributes, CharacterModel>
   implements CharacterAttributes {
@@ -36,7 +36,7 @@ export class Character extends Model<CharacterAttributes, CharacterModel>
   public stamina!: number;
   public gold!: number;
   public life_points!: number;
- 
+
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
@@ -103,9 +103,9 @@ Character.init({
     defaultValue: "ACTIVED"
   }
 },
-{
-  tableName: "character",
-  timestamps: true,
-  underscored: true,
-  sequelize
-});
+  {
+    tableName: "character",
+    timestamps: true,
+    underscored: true,
+    sequelize
+  });
